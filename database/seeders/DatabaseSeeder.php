@@ -18,5 +18,15 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->user();
+    }
+
+    private function user() {
+
+        return \App\Models\User::create([
+            'name' => "Max",
+            'email' => "maxattianesekr94@gmail.com",
+            'password' => \Illuminate\Support\Facades\Hash::make("Hunters2023"),
+        ]);
     }
 }

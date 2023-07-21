@@ -6,7 +6,7 @@
                 <div class="col-12 col-md-6 text-center fst-italic">
                     <div class="d-flex justify-content-between align-items-center my-3 px-1 bg-light border-bottom border-warning rounded-top">
                         <a class="btn text-secondary link-offset-2 link-underline link-underline-opacity-0" href="{{route('books.index')}}">Indietro</a>
-                        @if(auth()->user())
+                        @if(auth()->user() && $detailsBook->user_id == auth()->user()->id)
                         <div class="d-flex align-items-center">
                             <a class="btn text-warning link-offset-2 link-underline link-underline-opacity-0" href="{{route('books.edit', $detailsBook)}}">Modifica</a>
                             <form action="{{route('books.destroy', $detailsBook)}}" method="POST">
@@ -31,7 +31,8 @@
                     <p><span class="small">Pubblicato il: </span><span class="fw-bold">{{$detailsBook->publicated}}</span> - <span class="small">Genere: </span><span class="fw-bold">{{$detailsBook->gender}}</span></p>
                     <p><span class="small">Autore: </span><span class="fw-bold">{{$detailsBook->author}}</span></p>
                     <p class="fs-2">Temi del libro</p>
-                    <p class="pb-5">{{$detailsBook->theme}}</p>
+                    <p class="pb-4">{{$detailsBook->theme}}</p>
+                    <p class="pb-4 fw-bold"><span class="small pe-2">Libro aggiunto da: </span>{{$detailsBook->user->name}}</p>
                 </div>
                 <div class="col-0 col-md-3"></div>
             </div>

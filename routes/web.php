@@ -23,8 +23,10 @@ Route::get("books", [BookController::class,"index"])->name("books.index");
 Route::get("books/{book}", [BookController::class,"show"])->name("books.show");
 
 
-Route::prefix("Editor")->middleware("auth")->group(function() {
+Route::prefix("editor")->middleware("auth")->group(function() {
 
     Route::resource("books", BookController::class)->except("index", "show");
+
+    Route::get("books/account", [BookController::class, "booksAccount"])->name("books.account");
 
 });

@@ -6,7 +6,7 @@ use App\Models\Book;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests\bookRequest;
+use App\Http\Requests\StoreBookRequest;
 
 class BookController extends Controller
 {
@@ -17,9 +17,15 @@ class BookController extends Controller
     {
         $books = Book::all();
         
-        return view("Homepage.Books.index", compact("books"));
+        return view("Books.index", compact("books"));
     }
 
+    public function booksAccount() {
+
+        $books = auth()->user()->books;
+
+        return view("Books.accountBooks", compact("books"));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -27,15 +33,19 @@ class BookController extends Controller
     {
         $detailsBook = "";
 
-        return view("Homepage.Books.create", compact("detailsBook"));
+        return view("Books.create", compact("detailsBook"));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(bookRequest $request)
+    public function store(StoreBookRequest $request)
     {
         $book = Book::create($request->all());
+
+        $book->user_id = auth()->user()->id;
+
+        $book->save();
 
         if($request->hasFile("image") && $request->file("image")->isValid()){
 
@@ -61,7 +71,7 @@ class BookController extends Controller
 
         $detailsBook = Book::find($book->id);
         
-        return view("Homepage.Books.show", compact("detailsBook"));
+        return view("Books.show", compact("detailsBook"));
     }
 
     /**
@@ -71,14 +81,19 @@ class BookController extends Controller
     {
         $detailsBook = $book;
 
-        return view("Homepage.Books.edit", compact("detailsBook"));
+        return view("Books.edit", compact("detailsBook"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(bookRequest $request, Book $book)
+    public function update(StoreBookRequest $request, Book $book)
     {
+        if($book->user_id != auth()->user()) {
+
+            abort(403);
+        }
+        
         $book->title = $request->title;
         $book->publicated = $request->publicated;
         $book->gender = $request->gender;
@@ -106,6 +121,11 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
+        if($book->user_id != auth()->user()) {
+
+            abort(403);
+        }
+
         $book->delete();
 
         return redirect()->route("books.index")->with(["success" => "Libro eliminato con successo"]);

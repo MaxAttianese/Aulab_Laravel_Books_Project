@@ -7,13 +7,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarNav">
-      <ul class="navbar-nav pe-4">
+      <ul class="navbar-nav pe-5">
         @if(auth()->user())
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle fst-italic" href="/account" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           {{auth()->user()->name}}
           </a>
           <ul class="dropdown-menu">
+            <li class="ps-1 fst-italic"><a class="dropdown-item " href="{{route('books.account')}}">I libri aggiunti da me</a></li>
             <li class="ps-1 fst-italic"><a class="dropdown-item " href="{{route('books.create')}}">Aggiungi libro</a></li>
             <li class="ps-2"><form action="/logout" method="POST">
               @csrf
