@@ -41,11 +41,9 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        $book = Book::create($request->all());
+        $data = array_merge($request->all(), ["user_id" => auth()->user()->id]);
 
-        $book->user_id = auth()->user()->id;
-
-        $book->save();
+        $book = Book::create($data);
 
         if($request->hasFile("image") && $request->file("image")->isValid()){
 
@@ -89,7 +87,7 @@ class BookController extends Controller
      */
     public function update(StoreBookRequest $request, Book $book)
     {
-        if($book->user_id != auth()->user()) {
+        if($book->user->id != auth()->user()->id) {
 
             abort(403);
         }
@@ -121,7 +119,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        if($book->user_id != auth()->user()) {
+        if($book->user->id != auth()->user()->id) {
 
             abort(403);
         }

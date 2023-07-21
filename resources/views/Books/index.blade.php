@@ -6,9 +6,9 @@
                 @if(auth()->user())
                 <div class="text-end pe-4"><a href="{{route('books.create')}}" class="text-end link-offset-2 link-underline link-underline-opacity-0 text-primary fst-italic bg-light border-bottom border-warning rounded-top px-2">Aggiungi libro alla lista</a></div>
                 @endif
-                <x-flashmessage />
+                <div class="px-4 pt-2"><x-flashmessage /></div>
                 @foreach($books as $book)
-                <div class="col-12 col-xl-4 fst-italic pt-4 d-flex justify-content-center">
+                <div class="col-12 col-xl-4 fst-italic pt-3 d-flex justify-content-center">
                     <div class="card mb-3 bg-warning" style="width: 400px; height: 265px">
                         <div class="row g-0">
                             <div class="col-6 p-1">
