@@ -15,7 +15,9 @@ class Navbar extends Component
     public function __construct()
     {
         $this->links = [
-            route("books.index") => "Libreria"];
+            route("books.index") => "Libri",
+            route("comix.index") => "Fumetti"];
+        
     }
 
 
