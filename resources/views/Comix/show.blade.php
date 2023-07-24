@@ -19,7 +19,7 @@
                                     <h5 class="card-title fw-bold text-center fs-5">{{$comix['title']}}</h5>
                                 </div>
                                 <div class="pb-5">
-                                    <p class="card-text mb-1"><small class="text-body-secondary"> .Type:</small></p>
+                                    <p class="card-text mb-1"><small class="text-body-secondary"> .Tipo:</small></p>
                                     <p class="card-text text-center fs-5">{{$comix['type']}}</p>
                                     <p class="card-text mb-1"><small class="text-body-secondary"> .Durata:</small></p>
                                     <p class="card-text text-center fs-5">{{$comix['duration']}}</p>
