@@ -31,9 +31,15 @@ class BookController extends Controller
      */
     public function create()
     {
-        $detailsBook = "";
+        $detailsBook = new Book();
 
-        return view("Books.create", compact("detailsBook"));
+        $titleForm = "Aggiungi libro";
+
+        $action = route("books.store") ;
+
+        $buttoName = "Aggiungi";
+
+        return view("Books.form", compact("detailsBook", "titleForm", "action", "buttoName"));
     }
 
     /**
@@ -79,7 +85,13 @@ class BookController extends Controller
     {
         $detailsBook = $book;
 
-        return view("Books.edit", compact("detailsBook"));
+        $titleForm = "Modifica libro";
+
+        $action = route("books.update", $detailsBook);
+
+        $buttoName = "Modifica";
+
+        return view("Books.form", compact("detailsBook", "titleForm", "action", "buttoName"));
     }
 
     /**
