@@ -31,7 +31,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        $detailsBook = new Book();
+        $detailsBook = new Book;
 
         $titleForm = "Aggiungi libro";
 
@@ -39,7 +39,9 @@ class BookController extends Controller
 
         $buttoName = "Aggiungi";
 
-        return view("Books.form", compact("detailsBook", "titleForm", "action", "buttoName"));
+        $method = "";
+
+        return view("Books.form", compact("detailsBook", "titleForm", "action", "buttoName", "method"));
     }
 
     /**
@@ -91,7 +93,9 @@ class BookController extends Controller
 
         $buttoName = "Modifica";
 
-        return view("Books.form", compact("detailsBook", "titleForm", "action", "buttoName"));
+        $method = "PUT";
+
+        return view("Books.form", compact("detailsBook", "titleForm", "action", "buttoName", "method"));
     }
 
     /**

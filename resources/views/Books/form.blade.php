@@ -9,7 +9,7 @@
 
                     <form action="{{$action}}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @if($detailsBook)
+                        @if($method)
                         @method("PUT")
                         @endif
                         <div class="mb-3">
