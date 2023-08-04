@@ -12,7 +12,7 @@
                             <form action="{{route('books.destroy', $detailsBook)}}" method="POST">
                                 @csrf
                                 @method("DELETE")
-                                <button class="btn text-danger fst-italic" type="submit">Cancella</button>
+                                <button class="btn text-danger fst-italic" type="submit" onclick="return confirm('Sicuro di volerlo eliminare?')">Cancella</button>
                             </form>
                         </div>
                         @endif
